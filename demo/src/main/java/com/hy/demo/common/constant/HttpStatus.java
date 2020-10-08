@@ -1,4 +1,4 @@
-package com.hy.demo.constant;
+package com.hy.demo.common.constant;
 
 public class HttpStatus
 {
