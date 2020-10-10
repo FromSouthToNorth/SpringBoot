@@ -214,5 +214,4 @@ public class TokenService
     {
         return Constants.LOGIN_TOKEN_KEY + uuid;
     }
-
 }

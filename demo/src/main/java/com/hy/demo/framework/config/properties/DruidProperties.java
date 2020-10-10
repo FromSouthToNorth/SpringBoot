@@ -73,5 +73,4 @@ public class DruidProperties {
         datasource.setTestOnReturn(testOnReturn);
         return datasource;
     }
-
 }

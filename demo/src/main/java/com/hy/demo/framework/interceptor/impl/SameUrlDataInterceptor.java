@@ -121,5 +121,4 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
         }
         return false;
     }
-
 }

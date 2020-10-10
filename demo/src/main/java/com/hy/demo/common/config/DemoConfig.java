@@ -99,5 +99,4 @@ public class DemoConfig
     {
         return getProfile() + "/upload";
     }
-
 }
