@@ -26,9 +26,7 @@ public class ResourcesConfig implements WebMvcConfigurer
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry)
     {
-        /**
-         * 本地文件上传路径
-         */
+        /** 本地文件上传路径 */
         registry.addResourceHandler(Constants.REPEAT_SUBMIT_KEY + "/**").addResourceLocations("file:" + DemoConfig.getProfile() + "/");
     }
 
@@ -41,9 +39,6 @@ public class ResourcesConfig implements WebMvcConfigurer
         registry.addInterceptor(repeatSubmitInterceptor).addPathPatterns("/**");
     }
 
-    /**
-     * 跨域配置
-     */
     /**
      * 跨域配置
      */
