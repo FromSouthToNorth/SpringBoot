@@ -7,6 +7,8 @@ import com.hy.demo.common.core.domain.AjaxResult;
 import com.hy.demo.common.core.domain.model.LoginUser;
 import com.hy.demo.common.utils.ServletUtils;
 import com.hy.demo.common.utils.StringUtils;
+import com.hy.demo.framework.manager.AsyncManager;
+import com.hy.demo.framework.manager.factory.AsyncFactory;
 import com.hy.demo.framework.web.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

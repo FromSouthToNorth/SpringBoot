@@ -48,6 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Autowired
     private JwtAuthenticationTokenFilter authenticationTokenFilter;
 
+    /**
+     * 跨域过滤器
+     */
     @Autowired
     private CorsFilter corsFilter;
 
