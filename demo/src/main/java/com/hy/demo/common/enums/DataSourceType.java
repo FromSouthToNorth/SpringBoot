@@ -5,7 +5,6 @@ package com.hy.demo.common.enums;
  */
 public enum DataSourceType
 {
-
     /**
      * 主库
      */
@@ -15,5 +14,4 @@ public enum DataSourceType
      * 从库
      */
     SLAVE
-
 }

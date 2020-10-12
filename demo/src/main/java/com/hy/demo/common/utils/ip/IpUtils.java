@@ -1,6 +1,6 @@
 package com.hy.demo.common.utils.ip;
 
-import com.hy.demo.common.html.EscapeUtil;
+import com.hy.demo.common.utils.html.EscapeUtil;
 import com.hy.demo.common.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -191,5 +191,4 @@ public class IpUtils {
         }
         return "未知";
     }
-
 }

@@ -1,4 +1,4 @@
-package com.hy.demo.common.html;
+package com.hy.demo.common.utils.html;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * HTML过滤器，用于去除XSS漏洞隐患。
  */
-public class HTMLFilter
+public final class HTMLFilter
 {
     /**
      * regex flag union representing /si modifiers in php

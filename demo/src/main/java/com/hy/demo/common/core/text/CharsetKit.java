@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
  */
 public class CharsetKit
 {
-
     /** ISO-8859-1 */
     public static final String ISO_8859_1 = "ISO-8859-1";
     /** UTF-8 */
@@ -83,5 +82,4 @@ public class CharsetKit
     {
         return Charset.defaultCharset().name();
     }
-
 }
