@@ -2,7 +2,6 @@ package com.hy.demo.common.filter;
 
 import com.hy.demo.common.utils.StringUtils;
 import org.springframework.http.MediaType;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;

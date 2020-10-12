@@ -1,7 +1,9 @@
 package com.hy.demo.system.service.impl;
 
 import com.hy.demo.system.domain.SysOperLog;
+import com.hy.demo.system.mapper.SysOperLogMapper;
 import com.hy.demo.system.service.ISysOperLogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.List;
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService
 {
+    @Autowired
+    private SysOperLogMapper sysOperLogMapper;
+
     @Override
     public void insertOperlog(SysOperLog operLog) {
 

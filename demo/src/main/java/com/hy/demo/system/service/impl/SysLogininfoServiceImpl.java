@@ -1,7 +1,9 @@
 package com.hy.demo.system.service.impl;
 
 import com.hy.demo.system.domain.SysLogininfor;
+import com.hy.demo.system.mapper.SysLogininfoMapper;
 import com.hy.demo.system.service.ISysLogininforService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.List;
 @Service
 public class SysLogininfoServiceImpl implements ISysLogininforService
 {
+    @Autowired
+    private SysLogininfoMapper sysLogininfoMapper;
+
     @Override
     public void insertLogininfor(SysLogininfor logininfor) {
 
