@@ -1,7 +1,7 @@
 package com.hy.demo.common.core.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hy.demo.common.core.domain.model.entity.SysUser;
+import com.hy.demo.common.core.domain.entity.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -70,20 +70,17 @@ public class LoginUser implements UserDetails
         this.permissions = permissions;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
     @JsonIgnore
     @Override
-    public String getPassword() {
-        return null;
+    public String getPassword()
+    {
+        return user.getPassword();
     }
 
     @Override
-    public String getUsername() {
-        return null;
+    public String getUsername()
+    {
+        return user.getUserName();
     }
 
     /**
@@ -91,8 +88,9 @@ public class LoginUser implements UserDetails
      */
     @JsonIgnore
     @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    public boolean isAccountNonExpired()
+    {
+        return true;
     }
 
     /**
@@ -102,8 +100,9 @@ public class LoginUser implements UserDetails
      */
     @JsonIgnore
     @Override
-    public boolean isAccountNonLocked() {
-        return false;
+    public boolean isAccountNonLocked()
+    {
+        return true;
     }
 
     /**
@@ -113,8 +112,9 @@ public class LoginUser implements UserDetails
      */
     @JsonIgnore
     @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
+    public boolean isCredentialsNonExpired()
+    {
+        return true;
     }
 
     /**
@@ -124,79 +124,104 @@ public class LoginUser implements UserDetails
      */
     @JsonIgnore
     @Override
-    public boolean isEnabled() {
-        return false;
+    public boolean isEnabled()
+    {
+        return true;
     }
 
-    public String getToken() {
+    public String getToken()
+    {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(String token)
+    {
         this.token = token;
     }
 
-    public Long getLoginTime() {
+    public Long getLoginTime()
+    {
         return loginTime;
     }
 
-    public void setLoginTime(Long loginTime) {
+    public void setLoginTime(Long loginTime)
+    {
         this.loginTime = loginTime;
     }
 
-    public Long getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
-    }
-
-    public String getIpaddr() {
+    public String getIpaddr()
+    {
         return ipaddr;
     }
 
-    public void setIpaddr(String ipaddr) {
+    public void setIpaddr(String ipaddr)
+    {
         this.ipaddr = ipaddr;
     }
 
-    public String getLoginLocation() {
+    public String getLoginLocation()
+    {
         return loginLocation;
     }
 
-    public void setLoginLocation(String loginLocation) {
+    public void setLoginLocation(String loginLocation)
+    {
         this.loginLocation = loginLocation;
     }
 
-    public String getBrowser() {
+    public String getBrowser()
+    {
         return browser;
     }
 
-    public void setBrowser(String browser) {
+    public void setBrowser(String browser)
+    {
         this.browser = browser;
     }
 
-    public String getOs() {
+    public String getOs()
+    {
         return os;
     }
 
-    public void setOs(String os) {
+    public void setOs(String os)
+    {
         this.os = os;
     }
 
-    public Set<String> getPermissions() {
+    public Long getExpireTime()
+    {
+        return expireTime;
+    }
+
+    public void setExpireTime(Long expireTime)
+    {
+        this.expireTime = expireTime;
+    }
+
+    public Set<String> getPermissions()
+    {
         return permissions;
     }
 
-    public void setPermissions(Set<String> permissions) {
+    public void setPermissions(Set<String> permissions)
+    {
         this.permissions = permissions;
     }
 
-    public SysUser getUser() {
+    public SysUser getUser()
+    {
         return user;
     }
 
-    public void setUser(SysUser user) {
+    public void setUser(SysUser user)
+    {
         this.user = user;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return null;
     }
 }

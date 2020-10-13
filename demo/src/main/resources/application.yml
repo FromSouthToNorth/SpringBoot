@@ -34,6 +34,10 @@ logging:
 
 # Spring 配置
 spring:
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
   profiles:
     active: druid
 
