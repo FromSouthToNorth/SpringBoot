@@ -35,7 +35,8 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T>
     }
 
     @Override
-    public byte[] serialize(T t) throws SerializationException {
+    public byte[] serialize(T t) throws SerializationException
+    {
         if (t == null)
         {
             return new byte[0];
@@ -44,7 +45,8 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T>
     }
 
     @Override
-    public T deserialize(byte[] bytes) throws SerializationException {
+    public T deserialize(byte[] bytes) throws SerializationException
+    {
         if (bytes == null || bytes.length <= 0)
         {
             return null;

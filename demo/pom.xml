@@ -95,6 +95,12 @@
 			<version>1.3.3</version>
 		</dependency>
 
+		<!-- JSON工具类 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
 		<!-- 阿里JSON解析器 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -106,12 +112,6 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-		<!-- JSON工具类 -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
 		<!-- servlet包 -->
