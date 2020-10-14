@@ -34,7 +34,7 @@ public class RedisConfig extends CachingConfigurerSupport
 
         template.setValueSerializer(serializer);
         // 使用StringRedisSerializer来序列化和反序列化redis的key值
-        template.setValueSerializer(new StringRedisSerializer());
+        template.setKeySerializer(new StringRedisSerializer());
         template.afterPropertiesSet();
         return template;
     }
