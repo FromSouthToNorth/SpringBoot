@@ -105,8 +105,9 @@ public class TokenService
         setUserAgent(loginUser);
         refreshToken(loginUser);
 
-        HashMap<String, Object> claims = new HashMap<>();
-        claims.put(Constants.LOGIN_TOKEN_KEY, token);
+        Map<String, Object> claims = new HashMap<>();
+        // 设置 key 登录用户令牌前缀 value token
+        claims.put(Constants.LOGIN_USER_KEY, token);
         return createToken(claims);
     }
 
@@ -118,7 +119,7 @@ public class TokenService
      */
     public void verifyToken(LoginUser loginUser)
     {
-        Long expireTime = loginUser.getExpireTime();
+        long expireTime = loginUser.getExpireTime();
         long currentTime = System.currentTimeMillis();
         if (expireTime - currentTime <= MILLIS_MINUTE_TEN)
         {
@@ -173,7 +174,7 @@ public class TokenService
      * 从令牌中获取数据声明
      *
      * @param token 令牌
-     * @return数据声明
+     * @return 数据声明
      */
     private Claims parseToken(String token)
     {
@@ -189,7 +190,7 @@ public class TokenService
      * @param token 令牌
      * @return 用户名
      */
-    public String getUserFromToken(String token)
+    public String getUsernameFromToken(String token)
     {
         Claims claims = parseToken(token);
         return claims.getSubject();
@@ -197,12 +198,13 @@ public class TokenService
 
     /**
      * 获取请求token
+     *
      * @param request
      * @return token
      */
     private String getToken(HttpServletRequest request)
     {
-        String token = request.getHeader(this.header);
+        String token = request.getHeader(header);
         if (StringUtils.isNotEmpty(token) && token.startsWith(Constants.TOKEN_PREFIX))
         {
             token = token.replace(Constants.TOKEN_PREFIX, "");

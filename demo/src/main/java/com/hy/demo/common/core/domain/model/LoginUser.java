@@ -64,6 +64,14 @@ public class LoginUser implements UserDetails
     {
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public LoginUser(SysUser user, Set<String> permissions)
     {
         this.user = user;
@@ -127,16 +135,6 @@ public class LoginUser implements UserDetails
     public boolean isEnabled()
     {
         return true;
-    }
-
-    public String getToken()
-    {
-        return token;
-    }
-
-    public void setToken(String token)
-    {
-        this.token = token;
     }
 
     public Long getLoginTime()
@@ -223,5 +221,20 @@ public class LoginUser implements UserDetails
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginUser{" +
+                "token='" + token + '\'' +
+                ", loginTime=" + loginTime +
+                ", expireTime=" + expireTime +
+                ", ipaddr='" + ipaddr + '\'' +
+                ", loginLocation='" + loginLocation + '\'' +
+                ", browser='" + browser + '\'' +
+                ", os='" + os + '\'' +
+                ", permissions=" + permissions +
+                ", user=" + user +
+                '}';
     }
 }

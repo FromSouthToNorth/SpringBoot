@@ -81,6 +81,7 @@ public class SysLoginController
      *
      * @return 路由信息
      */
+    @GetMapping("getRouters")
     public AjaxResult getRouters()
     {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
