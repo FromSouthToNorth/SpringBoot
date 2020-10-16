@@ -1,11 +1,11 @@
 import axios from 'axios'
-import router from '@/router/routers'
-import { Notification } from 'element-ui'
-import store from '../store'
+import { MessageBox, Notification } from 'element-ui'
 import { getToken } from '@/utils/auth'
 import Config from '@/settings'
-import Cookies from 'js-cookie'
+import errorCode from '@/utils/errorCode'
+import Message from 'element-ui/packages/message/src/main'
 
+axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 // 创建axios实例
 const service = axios.create({
   // axios中请求配置有baseURL选项，表示请求URL公共部分
@@ -17,10 +17,11 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
-    if (getToken()) {
-      config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    // 是否需要设置 token
+    const isToken = (config.headers || {}).isToken === false
+    if (getToken() && !isToken) {
+      config.headers['Authorization'] = 'Bearer' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
-    config.headers['Content-Type'] = 'application/json'
     return config
   },
   error => {
@@ -30,13 +31,34 @@ service.interceptors.request.use(
   }
 )
 
-// response 拦截器
+// response 响应拦截器
 service.interceptors.response.use(
   response => {
-    const code = response.status
-    if (code < 200 || code > 300) {
+    console.log(response)
+    // 未设置状态码则默认成功状态
+    const code = response.data.code || 200
+    // 获取错误信息
+    const msg = errorCode[code] || response.data.msg || errorCode['default']
+    console.log(code)
+    if (code === 401) {
+      MessageBox.confirm('登录状态已过期，您可以继续留在该页面。或者重新登录，', '系统提示', {
+        confirmButtonText: '重新登录',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // store.dispatch('LogOut').then(() => {
+        //   location.href = '/index'
+        // })
+      })
+    } else if (code === 500) {
+      Message({
+        message: msg,
+        type: 'error'
+      })
+      return Promise.reject(new Error(msg))
+    } else if (code !== 200) {
       Notification.error({
-        title: response.message
+        title: msg
       })
       return Promise.reject('error')
     } else {
@@ -44,42 +66,20 @@ service.interceptors.response.use(
     }
   },
   error => {
-    let code = 0
-    try {
-      code = error.response.data.status
-    } catch (e) {
-      if (error.toString().indexOf('Error: timeout') !== -1) {
-        Notification.error({
-          title: '网络请求超时',
-          duration: 5000
-        })
-        return Promise.reject(error)
-      }
+    console.log('err' + error)
+    let { message } = error
+    if (message === 'Network Error') {
+      message = '后端接口异常'
+    } else if (message.includes('timeout')) {
+      message = '系统接口请求超时'
+    } else if (message.includes('Request failed with status code')) {
+      message = '系统接口' + message.substr(message.length - 3) + '异常'
     }
-    if (code) {
-      if (code === 401) {
-        store.dispatch('LogOut').then(() => {
-          // 用户登录界面提示
-          Cookies.set('point', 401)
-          location.reload()
-        })
-      } else if (code === 403) {
-        router.push({ path: '/401' })
-      } else {
-        const errorMsg = error.response.data.message
-        if (errorMsg !== undefined) {
-          Notification.error({
-            title: errorMsg,
-            duration: 5000
-          })
-        }
-      }
-    } else {
-      Notification.error({
-        title: '接口请求失败',
-        duration: 5000
-      })
-    }
+    Message({
+      message: message,
+      type: 'error',
+      duration: 5 * 1000
+    })
     return Promise.reject(error)
   }
 )

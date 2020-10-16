@@ -30,11 +30,11 @@ module.exports = {
   /**
    * @description token key
    */
-  TokenKey: 'EL-ADMIN-TOEKN',
+  TokenKey: 'Admin-Token',
   /**
-   * @description 请求超时时间，毫秒（默认2分钟）
+   * @description 请求超时时间，毫秒
    */
-  timeout: 1200000,
+  timeout: 200000,
   /**
    * @description 是否显示logo
    */

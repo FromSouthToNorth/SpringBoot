@@ -98,9 +98,9 @@ export default {
       this.loginForm = {
         username: username === undefined ? this.loginForm.username : username,
         password: password === undefined ? this.loginForm.password : decrypt(password),
-        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
-        code: ''
+        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
       }
+      console.log(Cookies.get('username'), Cookies.get('password'), Cookies.get('rememberMe'))
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -118,7 +118,6 @@ export default {
           this.$store
             .dispatch('Login', this.loginForm)
             .then(() => {
-              this.loading = false
               this.$router.push({ path: this.redirect || '/' })
             }).catch(() => {
               this.loading = false

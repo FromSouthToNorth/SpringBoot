@@ -30,7 +30,8 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler
     private TokenService tokenService;
 
     @Override
-    public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException
+    public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication)
+            throws IOException, ServletException
     {
         LoginUser loginUser = tokenService.getLoginUser(httpServletRequest);
         if (StringUtils.isNotNull(loginUser))
