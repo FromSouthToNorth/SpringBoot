@@ -3,7 +3,9 @@ package com.hy.demo.system.service.impl;
 import com.hy.demo.common.constant.UserConstants;
 import com.hy.demo.common.core.domain.TreeSelect;
 import com.hy.demo.common.core.domain.entity.SysMenu;
+import com.hy.demo.common.utils.SecurityUtils;
 import com.hy.demo.common.utils.StringUtils;
+import com.hy.demo.system.domain.vo.MetaVo;
 import com.hy.demo.system.domain.vo.RouterVo;
 import com.hy.demo.system.mapper.SysMenuMapper;
 import com.hy.demo.system.service.ISysMenuService;
@@ -52,7 +54,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 权限列表
      */
     @Override
-    public Set<String> selectMenuPermsByUserId(Long userId) {
+    public Set<String> selectMenuPermsByUserId(Long userId)
+    {
         List<String> perms = menuMapper.selectMenuPermsByUserId(userId);
         HashSet<String> permsSet = new HashSet<>();
         for (String perm : perms) {
@@ -71,8 +74,18 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 菜单列表
      */
     @Override
-    public List<SysMenu> selectMenuTreeByUserId(Long userId) {
-        return null;
+    public List<SysMenu> selectMenuTreeByUserId(Long userId)
+    {
+        List<SysMenu> menus = null;
+        if (SecurityUtils.isAdmin(userId))
+        {
+            menus = menuMapper.selectMenuTreeAll();
+        }
+        else
+        {
+            menus = menuMapper.selectMenuTreeByUserId(userId);
+        }
+        return getChildPerms(menus, 0);
     }
 
     /**
@@ -82,7 +95,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 选中菜单列表
      */
     @Override
-    public List<Integer> selectMenuListByRoleId(Long roleId) {
+    public List<Integer> selectMenuListByRoleId(Long roleId)
+    {
         return null;
     }
 
@@ -93,8 +107,37 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 路由列表
      */
     @Override
-    public List<RouterVo> buildMenus(List<SysMenu> menus) {
-        return null;
+    public List<RouterVo> buildMenus(List<SysMenu> menus)
+    {
+        LinkedList<RouterVo> routers = new LinkedList<>();
+        for (SysMenu menu : menus) {
+            RouterVo router = new RouterVo();
+            router.setHidden("1".equals(menu.getVisible()));
+            router.setName(getRouteName(menu));
+            router.setPath(getRouterPath(menu));
+            router.setComponent(getComponent(menu));
+            router.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon()));
+            List<SysMenu> cMenus = menu.getChildren();
+            if (!cMenus.isEmpty() && cMenus.size() > 0 && UserConstants.TYPE_DIR.equals(menu.getMenuType()))
+            {
+                router.setAlwaysShow(true);
+                router.setRedirect("noRedirect");
+                router.setChildren(buildMenus(cMenus));
+            }
+            else if (isMeunFrame(menu))
+            {
+                ArrayList<RouterVo> childrenList = new ArrayList<>();
+                RouterVo children = new RouterVo();
+                children.setPath(menu.getPath());
+                children.setComponent(menu.getComponent());
+                children.setName(StringUtils.capitalize(menu.getPath()));
+                children.setMeta(new MetaVo(menu.getMenuName(), menu.getIcon()));
+                childrenList.add(children);
+                router.setChildren(childrenList);
+            }
+            routers.add(router);
+        }
+        return routers;
     }
 
     /**
@@ -104,7 +147,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 树结构列表
      */
     @Override
-    public List<SysMenu> buildMenuTree(List<SysMenu> menus) {
+    public List<SysMenu> buildMenuTree(List<SysMenu> menus)
+    {
         return null;
     }
 
@@ -115,7 +159,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 下拉树结构列表
      */
     @Override
-    public List<TreeSelect> buildMenuTreeSelect(List<SysMenu> menus) {
+    public List<TreeSelect> buildMenuTreeSelect(List<SysMenu> menus)
+    {
         return null;
     }
 
@@ -126,7 +171,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 菜单信息
      */
     @Override
-    public SysMenu selectMenuById(Long menuId) {
+    public SysMenu selectMenuById(Long menuId)
+    {
         return null;
     }
 
@@ -137,7 +183,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 结果
      */
     @Override
-    public boolean hasChildByMenuId(Long menuId) {
+    public boolean hasChildByMenuId(Long menuId)
+    {
         return false;
     }
 
@@ -148,7 +195,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 结果
      */
     @Override
-    public boolean checkMenuExistRole(Long menuId) {
+    public boolean checkMenuExistRole(Long menuId)
+    {
         return false;
     }
 
@@ -159,7 +207,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 结果
      */
     @Override
-    public int insertMenu(SysMenu menu) {
+    public int insertMenu(SysMenu menu)
+    {
         return 0;
     }
 
@@ -170,7 +219,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 结果
      */
     @Override
-    public int updateMenu(SysMenu menu) {
+    public int updateMenu(SysMenu menu)
+    {
         return 0;
     }
 
@@ -181,7 +231,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 结果
      */
     @Override
-    public int deleteMenuById(Long menuId) {
+    public int deleteMenuById(Long menuId)
+    {
         return 0;
     }
 
@@ -192,7 +243,8 @@ public class SysMenuServiceImpl implements ISysMenuService
      * @return 结果
      */
     @Override
-    public String checkMenuNameUnique(SysMenu menu) {
+    public String checkMenuNameUnique(SysMenu menu)
+    {
         return null;
     }
     /**

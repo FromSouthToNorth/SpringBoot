@@ -2,6 +2,7 @@ package com.hy.demo.admin.web.controller.system;
 
 import com.hy.demo.common.constant.Constants;
 import com.hy.demo.common.core.domain.AjaxResult;
+import com.hy.demo.common.core.domain.entity.SysMenu;
 import com.hy.demo.common.core.domain.entity.SysUser;
 import com.hy.demo.common.core.domain.model.LoginBody;
 import com.hy.demo.common.core.domain.model.LoginUser;
@@ -9,12 +10,14 @@ import com.hy.demo.common.utils.ServletUtils;
 import com.hy.demo.framework.web.service.SysLoginService;
 import com.hy.demo.framework.web.service.SysPermissionService;
 import com.hy.demo.framework.web.service.TokenService;
+import com.hy.demo.system.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,6 +28,9 @@ public class SysLoginController
 {
     @Autowired
     private SysLoginService loginService;
+
+    @Autowired
+    private ISysMenuService menuService;
 
     @Autowired
     private TokenService tokenService;
@@ -68,5 +74,19 @@ public class SysLoginController
         ajax.put("roles", roles);
         ajax.put("permissions", permission);
         return ajax;
+    }
+
+    /**
+     * 获取路由信息
+     *
+     * @return 路由信息
+     */
+    public AjaxResult getRouters()
+    {
+        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        // 用户信息
+        SysUser user = loginUser.getUser();
+        List<SysMenu> menus = menuService.selectMenuTreeByUserId(user.getUserId());
+        return AjaxResult.success(menuService.buildMenus(menus));
     }
 }

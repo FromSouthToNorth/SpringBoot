@@ -8,7 +8,7 @@ demo:
   copyrightYear: 2020
   # 实例演示开关
   demoEnabled: true
-  # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
+  # 文件路径 示例（ Windows配置D:/hy/uploadPath，Linux配置 /home/hy/uploadPath）
   profile: D:/demo/uploadPath
   # 获取ip地址开关
   addressEnabled: false
@@ -46,7 +46,6 @@ spring:
     # 地址
     host: localhost
     # 端口，默认为6379
-      # 端口，默认为6379
     port: 6379
       # 密码
     password:
