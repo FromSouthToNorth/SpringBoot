@@ -84,6 +84,7 @@ public class SysLoginController
     @GetMapping("getRouters")
     public AjaxResult getRouters()
     {
+        // 获取登录用户身份信息
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         // 用户信息
         SysUser user = loginUser.getUser();

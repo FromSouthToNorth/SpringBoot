@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 参数配置 信息操作处理
+ */
 @RestController
 @RequestMapping("/system/config")
 public class SysConfigController extends BaseController
