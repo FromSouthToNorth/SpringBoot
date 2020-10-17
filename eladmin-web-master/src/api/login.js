@@ -2,22 +2,23 @@ import request from '@/utils/request'
 
 // 登录方法
 export function login(username, password, code, uuid) {
+  const data = {
+    username,
+    password,
+    code,
+    uuid
+  }
   return request({
     url: '/login',
     method: 'post',
-    data: {
-      username,
-      password,
-      code,
-      uuid
-    }
+    data: data
   })
 }
 
 // 获取用户详细信息
 export function getInfo() {
   return request({
-    url: 'getInfo',
+    url: '/getInfo',
     method: 'get'
   })
 }
@@ -25,7 +26,7 @@ export function getInfo() {
 // 获取验证码
 export function getCodeImg() {
   return request({
-    url: 'captchaImage',
+    url: '/captchaImage',
     method: 'get'
   })
 }

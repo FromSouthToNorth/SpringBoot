@@ -106,7 +106,7 @@ public class TokenService
         refreshToken(loginUser);
 
         Map<String, Object> claims = new HashMap<>();
-        // 设置 key 登录用户令牌前缀 value token
+        // 设置 key 登录用户令牌前缀 login_user_key， value token
         claims.put(Constants.LOGIN_USER_KEY, token);
         return createToken(claims);
     }
