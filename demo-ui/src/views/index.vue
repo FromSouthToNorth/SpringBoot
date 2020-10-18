@@ -57,7 +57,7 @@ const lineChartData = {
 }
 
 export default {
-  name: 'Dashboard',
+  name: 'Index',
   components: {
     GithubCorner,
     PanelGroup,

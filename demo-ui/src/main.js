@@ -24,10 +24,10 @@ import 'highlight.js/styles/atom-one-dark.css'
 
 import App from './App'
 import store from './store'
-import router from './router/routers'
+import router from './router'
 
 import './assets/icons' // icon
-import './router/index' // permission control
+import './permission' // permission control
 import 'echarts-gl'
 
 Vue.use(VueHighlightJS)
