@@ -2,7 +2,6 @@ package com.hy.demo.common.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.hy.demo.common.core.domain.entity.SysDept;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

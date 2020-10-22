@@ -1,7 +1,6 @@
 package com.hy.demo.common.utils;
 
 import com.hy.demo.common.core.text.StrFormatter;
-
 import java.util.*;
 
 /**

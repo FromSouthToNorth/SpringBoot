@@ -1,7 +1,6 @@
 package com.hy.demo.common.enums;
 
 import org.springframework.lang.Nullable;
-
 import java.util.HashMap;
 import java.util.Map;
 

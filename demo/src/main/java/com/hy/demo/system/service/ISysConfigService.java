@@ -1,7 +1,6 @@
 package com.hy.demo.system.service;
 
 import com.hy.demo.system.domain.SysConfig;
-
 import java.util.List;
 
 /**

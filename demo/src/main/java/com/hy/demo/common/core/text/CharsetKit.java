@@ -1,7 +1,6 @@
 package com.hy.demo.common.core.text;
 
 import com.hy.demo.common.utils.StringUtils;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 

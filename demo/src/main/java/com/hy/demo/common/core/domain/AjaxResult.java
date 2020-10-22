@@ -2,7 +2,6 @@ package com.hy.demo.common.core.domain;
 
 import com.hy.demo.common.utils.StringUtils;
 import com.hy.demo.common.constant.HttpStatus;
-
 import java.util.HashMap;
 
 /**

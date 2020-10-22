@@ -3,7 +3,6 @@ package com.hy.demo.common.utils.http;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.ServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;

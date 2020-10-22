@@ -25,7 +25,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
@@ -190,9 +189,9 @@ public class LogAspect
         {
             for (int i = 0; i < paramsArray.length; i++)
             {
-                if (!isFilterObject(paramsArray))
+                if (!isFilterObject(paramsArray[i]))
                 {
-                    String jsonObj = JSON.toJSONString(paramsArray[i]);
+                    Object jsonObj = JSON.toJSON(paramsArray[i]);
                     params += jsonObj.toString() + " ";
                 }
             }

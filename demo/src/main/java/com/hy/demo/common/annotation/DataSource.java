@@ -1,7 +1,6 @@
 package com.hy.demo.common.annotation;
 
 import com.hy.demo.common.enums.DataSourceType;
-
 import java.lang.annotation.*;
 
 /**
