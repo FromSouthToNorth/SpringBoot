@@ -28,6 +28,11 @@ public class ResourcesConfig implements WebMvcConfigurer
     {
         /** 本地文件上传路径 */
         registry.addResourceHandler(Constants.REPEAT_SUBMIT_KEY + "/**").addResourceLocations("file:" + DemoConfig.getProfile() + "/");
+
+        /** swagger配置 */
+        // 会到 springfox-swagger-ui-2.9.2.jar META-INF 寻找 swagger-ui.html
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**

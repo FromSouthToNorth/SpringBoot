@@ -54,7 +54,7 @@ public class SysPermissionService
         // 管理员拥有所有权限
         if (user.isAdmin())
         {
-            perms.add("*.*.*");
+            perms.add("*:*:*");
         }
         else
         {

@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SpringUtils implements BeanFactoryPostProcessor,
-        ApplicationContextAware {
+        ApplicationContextAware
+{
 
     /** Spring应用上下文环境 */
     private static ConfigurableListableBeanFactory beanFactory;

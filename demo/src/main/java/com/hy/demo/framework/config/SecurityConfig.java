@@ -90,11 +90,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .csrf().disable()
                 // 认证失败处理类
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                // 基于token，所以不需要session
+                // 基于 token，所以不需要 session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 // 过滤请求
                 .authorizeRequests()
-                // 对于登录login 验证码captchaImage 允许匿名访问
+                // 对于登录 login 验证码 captchaImage 允许匿名访问
                 .antMatchers("/login", "/captchaImage").anonymous()
                 .antMatchers(
                         HttpMethod.GET,
@@ -115,10 +115,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .anyRequest().authenticated()
                 .and()
                 .headers().frameOptions().disable();
+        // 退出 跳转到 logoutSuccessHandler
         httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
-        // 添加JWT filter
+        // 添加 JWT filter
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        // 添加CORS filter
+        // 添加 CORS filter
         httpSecurity.addFilterBefore(corsFilter, JwtAuthenticationTokenFilter.class);
         httpSecurity.addFilterBefore(corsFilter, LogoutFilter.class);
     }
@@ -126,6 +127,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     /**
      * 强散列哈希加密实现
+     * encode 明文 密码字符串
+     * matches 匹配密码
+     *  rawPassword 明文 密码字符串
+     *  encodedPassword 加密之后的密码
      */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder()

@@ -1,0 +1,10 @@
+# 忽略 build 目录下类型为 js 文件的语法检查
+build/*.js
+# 忽略 src/assets 目录下文件的语法检查
+src/assets
+# 忽略 public 目录下文件的语法检查
+public
+# 忽略当前目录下问 js 的文件语法检查
+*.js
+# 忽略当前目录下问 vue 的文件语法检查
+*.vue
