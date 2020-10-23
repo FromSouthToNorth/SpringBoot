@@ -1,7 +1,6 @@
 package com.hy.demo.common.core.domain.entity;
 
 import com.hy.demo.common.core.domain.BaseEntity;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

@@ -2,7 +2,6 @@ package com.hy.demo.system.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hy.demo.common.core.domain.BaseEntity;
-
 import java.util.Arrays;
 import java.util.Date;
 

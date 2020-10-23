@@ -2,7 +2,6 @@ package com.hy.demo.system.mapper;
 
 import com.hy.demo.system.domain.SysUserRole;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**

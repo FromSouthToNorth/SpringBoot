@@ -2,7 +2,6 @@ package com.hy.demo.common.utils.ip;
 
 import com.hy.demo.common.utils.html.EscapeUtil;
 import com.hy.demo.common.utils.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;

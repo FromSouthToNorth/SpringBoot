@@ -1,5 +1,9 @@
 module.exports = {
+<<<<<<< HEAD
   title: '协议供货电子商城',
+=======
+  title: 'demo 管理系统',
+>>>>>>> 22c85f59f898f9c13ac83a7e6822ea479746a5af
 
   /**
    * 是否显示 tagsView

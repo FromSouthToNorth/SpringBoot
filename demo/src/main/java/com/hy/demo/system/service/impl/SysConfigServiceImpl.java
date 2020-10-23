@@ -1,6 +1,5 @@
 package com.hy.demo.system.service.impl;
 
-import com.hy.demo.common.annotation.DataScope;
 import com.hy.demo.common.annotation.DataSource;
 import com.hy.demo.common.constant.Constants;
 import com.hy.demo.common.constant.UserConstants;
@@ -13,7 +12,6 @@ import com.hy.demo.system.mapper.SysConfigMapper;
 import com.hy.demo.system.service.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.List;
@@ -51,7 +49,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      */
     @Override
     @DataSource(DataSourceType.MASTER)
-    public SysConfig selectConfigById(Long configId) {
+    public SysConfig selectConfigById(Long configId)
+    {
         SysConfig config = new SysConfig();
         config.setConfigId(configId);
         return configMapper.selectConfig(config);
@@ -64,7 +63,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      * @return 参数键值
      */
     @Override
-    public String selectConfigByKey(String configKey) {
+    public String selectConfigByKey(String configKey)
+    {
         String configValue = Convert.toStr(redisCache.getCacheObject(getCacheKey(configKey)));
         if (StringUtils.isNotEmpty(configValue))
         {
@@ -99,7 +99,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      * @return 结果
      */
     @Override
-    public int insertConfig(SysConfig config) {
+    public int insertConfig(SysConfig config)
+    {
         int row = configMapper.insertConfig(config);
         if (row > 0)
         {
@@ -115,7 +116,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      * @return 结果
      */
     @Override
-    public int updateConfig(SysConfig config) {
+    public int updateConfig(SysConfig config)
+    {
         int row = configMapper.updateConfig(config);
         if (row > 0)
         {
@@ -131,7 +133,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      * @return 结果
      */
     @Override
-    public int deleteConfigByIds(Long[] configIds) {
+    public int deleteConfigByIds(Long[] configIds)
+    {
         int count = configMapper.deleteConfigByIds(configIds);
         if (count > 0)
         {
@@ -145,7 +148,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      * 清空缓存数据
      */
     @Override
-    public void clearCache() {
+    public void clearCache()
+    {
         Collection<String> keys = redisCache.keys(Constants.SYS_CONFIG_KEY + "*");
         redisCache.deleteObject(keys);
     }
@@ -157,7 +161,8 @@ public class SysConfigServiceImpl implements ISysConfigService
      * @return 结果
      */
     @Override
-    public String checkConfigKeyUnique(SysConfig config) {
+    public String checkConfigKeyUnique(SysConfig config)
+    {
         Long configId = StringUtils.isNull(config.getConfigId()) ? -1L : config.getConfigId();
         SysConfig info = configMapper.checkConfigKeyUnique(config.getConfigKey());
         if (StringUtils.isNotNull(info) && info.getConfigId().longValue() != configId.longValue())

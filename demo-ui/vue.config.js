@@ -6,7 +6,11 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+<<<<<<< HEAD
 const name = defaultSettings.title || '协议供货电子商城' // 标题
+=======
+const name = defaultSettings.title || 'demo 管理系统' // 标题
+>>>>>>> 22c85f59f898f9c13ac83a7e6822ea479746a5af
 
 const port = process.env.port || process.env.npm_config_port || 80 // 端口
 

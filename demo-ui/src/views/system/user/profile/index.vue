@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="app-container">
     <el-row :gutter="20">
       <el-col :span="6" :xs="24">
@@ -87,6 +88,14 @@ export default {
       });
     }
   }
+=======
+
+</template>
+
+<script>
+export default {
+name: "index"
+>>>>>>> 22c85f59f898f9c13ac83a7e6822ea479746a5af
 }
 </script>
 

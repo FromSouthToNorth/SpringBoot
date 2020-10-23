@@ -13,7 +13,6 @@ import com.hy.demo.system.service.ISysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.*;
 
 /**
@@ -53,7 +52,8 @@ public class SysRoleServiceImpl implements ISysRoleService
      * @return 权限列表
      */
     @Override
-    public Set<String> selectRolePermissionByUserId(Long userId) {
+    public Set<String> selectRolePermissionByUserId(Long userId)
+    {
         List<SysRole> perms = roleMapper.selectRolePermissionByUserId(userId);
         HashSet<String> permsSet = new HashSet<>();
         for (SysRole perm : perms) {

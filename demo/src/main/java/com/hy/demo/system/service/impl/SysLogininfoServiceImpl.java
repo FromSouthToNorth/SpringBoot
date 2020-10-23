@@ -5,7 +5,6 @@ import com.hy.demo.system.mapper.SysLogininfoMapper;
 import com.hy.demo.system.service.ISysLogininforService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -35,7 +34,8 @@ public class SysLogininfoServiceImpl implements ISysLogininforService
      * @return 登录记录集合
      */
     @Override
-    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor) {
+    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor)
+    {
         return logininfoMapper.selectLogininforList(logininfor);
     }
 

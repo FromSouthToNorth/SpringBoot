@@ -3,7 +3,6 @@ package com.hy.demo.common.utils.http;
 import com.hy.demo.common.constant.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.ConnectException;

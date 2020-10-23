@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -27,12 +26,16 @@ public class ResourcesConfig implements WebMvcConfigurer
     public void addResourceHandlers(ResourceHandlerRegistry registry)
     {
         /** 本地文件上传路径 */
+<<<<<<< HEAD
         registry.addResourceHandler(Constants.REPEAT_SUBMIT_KEY + "/**").addResourceLocations("file:" + DemoConfig.getProfile() + "/");
 
         /** swagger配置 */
         // 会到 springfox-swagger-ui-2.9.2.jar META-INF 寻找 swagger-ui.html
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+=======
+        registry.addResourceHandler(Constants.RESOURCE_PREFIX + "/**").addResourceLocations("file:" + DemoConfig.getProfile() + "/");
+>>>>>>> 22c85f59f898f9c13ac83a7e6822ea479746a5af
     }
 
     /**

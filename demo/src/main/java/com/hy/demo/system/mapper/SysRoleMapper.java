@@ -1,7 +1,6 @@
 package com.hy.demo.system.mapper;
 
 import com.hy.demo.common.core.domain.entity.SysRole;
-
 import java.util.List;
 
 /**

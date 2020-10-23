@@ -2,7 +2,6 @@ package com.hy.demo.common.annotation;
 
 import com.hy.demo.common.enums.BusinessType;
 import com.hy.demo.common.enums.OperatorType;
-
 import java.lang.annotation.*;
 
 /**
